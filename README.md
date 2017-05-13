@@ -2,17 +2,11 @@
 
 [![Build Status](https://travis-ci.org/veganstraightedge/markdown_media.png?branch=master)](https://travis-ci.org/veganstraightedge/markdown_media)
 [![Code Climate](https://codeclimate.com/github/veganstraightedge/markdown_media/badges/gpa.svg)](https://codeclimate.com/github/veganstraightedge/markdown_media)
+![Version 0.1](https://img.shields.io/badge/VERSION-0.1-green.svg)
 
 This syntax uses doubles square brackets on each side of a URL and optional options.
 It expands into the current preferred embed code for that site's media or raw media.
 Supported media types: YouTube, Vimeo, Instagram, Twitter, images, videos, audios.
-
-
-## Current Version
-
-0.1
-
-![Version 0.1](https://img.shields.io/badge/VERSION-0.1-green.svg)
 
 
 ## Installation
