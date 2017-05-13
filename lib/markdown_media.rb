@@ -1,5 +1,9 @@
 require "markdown_media/version"
 
 module MarkdownMedia
-  # Your code goes here...
+  class << self
+    def url_or_path?(string)
+      string.match?(/^(http|\/)\S+/)
+    end
+  end
 end
