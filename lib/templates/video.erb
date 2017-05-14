@@ -3,7 +3,7 @@
     <source src="<%= embed_id %>" />
   </video>
 
-  <% if caption.to_s.empty? %>
+  <% unless caption.to_s.empty? %>
     <figcaption class="caption video-caption">
       <%# TODO render_markdown %>
       <%= caption %>
