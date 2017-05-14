@@ -7,7 +7,7 @@ module MarkdownMedia
 
   class << self
     def parse(text)
-      output = text.gsub(EMBED_REGEX) do |match|
+      output = text.gsub(EMBED_REGEX) do
         embed_tag = $1
 
         unless embed_tag.to_s.empty?
@@ -18,6 +18,7 @@ module MarkdownMedia
           link    = if embed_tag_pieces.to_s.empty?
             embed_tag_pieces.pop if url_or_path?(embed_tag_pieces.last)
           end
+
           caption = embed_tag_pieces.join(" ")
 
           expanded_embed(url, caption: caption, link: link, id: id)
