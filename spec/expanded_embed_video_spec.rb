@@ -5,8 +5,8 @@ RSpec.describe MarkdownMedia do
     it "finds an image embed" do
       result = MarkdownMedia.expanded_embed("http://example.com/photo.png")
 
-      expect_result = %q{<figure id=""><img src="http://example.com/photo.png" /></figure>}
-      expect(strip_html_whitespace(result)).to eq(expect_result)
+      expected_result = %q{<figure id=""><img src="http://example.com/photo.png" /></figure>}
+      expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
     it "finds an image embed with a caption" do
@@ -15,8 +15,8 @@ RSpec.describe MarkdownMedia do
         caption: "photo caption"
       )
 
-      expect_result = %q{<figure id=""><img src="http://example.com/photo.png" /><figcaption>photo caption</figcaption></figure>}
-      expect(strip_html_whitespace(result)).to eq(expect_result)
+      expected_result = %q{<figure id=""><img src="http://example.com/photo.png" /><figcaption>photo caption</figcaption></figure>}
+      expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
     it "finds an image embed with a caption and link" do
@@ -26,8 +26,8 @@ RSpec.describe MarkdownMedia do
         link:    "http://example.com/linked-destination"
       )
 
-      expect_result = %q{<figure id=""><a href="http://example.com/linked-destination"><img src="http://example.com/photo.png" /></a><figcaption>photo caption</figcaption></figure>}
-      expect(strip_html_whitespace(result)).to eq(expect_result)
+      expected_result = %q{<figure id=""><a href="http://example.com/linked-destination"><img src="http://example.com/photo.png" /></a><figcaption>photo caption</figcaption></figure>}
+      expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
     it "finds an image embed with a caption, link and id" do
@@ -38,8 +38,8 @@ RSpec.describe MarkdownMedia do
         id:      "photo"
       )
 
-      expect_result = %q{<figure id="photo"><a href="http://example.com/linked-destination"><img src="http://example.com/photo.png" /></a><figcaption>photo caption</figcaption></figure>}
-      expect(strip_html_whitespace(result)).to eq(expect_result)
+      expected_result = %q{<figure id="photo"><a href="http://example.com/linked-destination"><img src="http://example.com/photo.png" /></a><figcaption>photo caption</figcaption></figure>}
+      expect(strip_html_whitespace(result)).to eq(expected_result)
     end
   end
 end

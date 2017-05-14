@@ -6,8 +6,8 @@ RSpec.describe MarkdownMedia do
       locals = { embed_id: "http://example.com/photo.png", caption: "photo caption", link: "http://example.com", id: "photo" }
       result = MarkdownMedia.render_erb("image", locals)
 
-      expect_result = %q{<figure id="photo"><a href="http://example.com"><img src="http://example.com/photo.png" /></a><figcaption>photo caption</figcaption></figure>}
-      expect(strip_html_whitespace(result)).to eq(expect_result)
+      expected_result = %q{<figure id="photo"><a href="http://example.com"><img src="http://example.com/photo.png" /></a><figcaption>photo caption</figcaption></figure>}
+      expect(strip_html_whitespace(result)).to eq(expected_result)
     end
   end
 end

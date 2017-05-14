@@ -5,8 +5,8 @@ RSpec.describe MarkdownMedia do
     it "finds an audio embed" do
       result = MarkdownMedia.expanded_embed("http://example.com/audio.mp3")
 
-      expect_result = %q{<figure id=""><audio controls><source src="http://example.com/audio.mp3" /></audio></figure>}
-      expect(strip_html_whitespace(result)).to eq(expect_result)
+      expected_result = %q{<figure id=""><audio controls><source src="http://example.com/audio.mp3" /></audio></figure>}
+      expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
     it "finds an audio embed with a caption" do
@@ -15,8 +15,8 @@ RSpec.describe MarkdownMedia do
         caption: "audio caption"
       )
 
-      expect_result = %q{<figure id=""><audio controls><source src="http://example.com/audio.mp3" /></audio><figcaption class="caption audio-caption">audio caption</figcaption></figure>}
-      expect(strip_html_whitespace(result)).to eq(expect_result)
+      expected_result = %q{<figure id=""><audio controls><source src="http://example.com/audio.mp3" /></audio><figcaption class="caption audio-caption">audio caption</figcaption></figure>}
+      expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
     it "finds an audio embed with a caption and link" do
@@ -26,8 +26,8 @@ RSpec.describe MarkdownMedia do
         link:    "http://example.com/linked-destination"
       )
 
-      expect_result = %q{<figure id=""><audio controls><source src="http://example.com/audio.mp3" /></audio><figcaption class="caption audio-caption">audio caption</figcaption></figure>}
-      expect(strip_html_whitespace(result)).to eq(expect_result)
+      expected_result = %q{<figure id=""><audio controls><source src="http://example.com/audio.mp3" /></audio><figcaption class="caption audio-caption">audio caption</figcaption></figure>}
+      expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
     it "finds an audio embed with a caption, link and id" do
@@ -38,8 +38,8 @@ RSpec.describe MarkdownMedia do
         id:      "audio"
       )
 
-      expect_result = %q{<figure id="audio"><audio controls><source src="http://example.com/audio.mp3" /></audio><figcaption class="caption audio-caption">audio caption</figcaption></figure>}
-      expect(strip_html_whitespace(result)).to eq(expect_result)
+      expected_result = %q{<figure id="audio"><audio controls><source src="http://example.com/audio.mp3" /></audio><figcaption class="caption audio-caption">audio caption</figcaption></figure>}
+      expect(strip_html_whitespace(result)).to eq(expected_result)
     end
   end
 end
