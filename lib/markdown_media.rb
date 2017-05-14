@@ -62,15 +62,15 @@ module MarkdownMedia
 
       when "youtu.be"
         slug     = "youtube"
-        embed_id = url.path.split("/").map{ |path_piece| path_piece unless path_piece.blank? }.compact.first
+        embed_id = url.path.split("/").map{ |path_piece| path_piece unless path_piece.to_s.empty? }.compact.first
 
       when /dailymotion.com/
         slug     = "dailymotion"
-        embed_id = url.path.split("/video/").map{ |path_piece| path_piece unless path_piece.blank? }.compact.first.split("_").first
+        embed_id = url.path.split("/video/").map{ |path_piece| path_piece unless path_piece.to_s.empty? }.compact.first.split("_").first
 
       when "vimeo.com"
         slug     = "vimeo"
-        embed_id = url.path.split("/").map{ |path_piece| path_piece unless path_piece.blank? }.compact.first
+        embed_id = url.path.split("/").map{ |path_piece| path_piece unless path_piece.to_s.empty? }.compact.first
 
       when "twitter.com"
         slug     = "twitter"
