@@ -3,7 +3,7 @@
     <source src="<%= embed_id %>" />
   </audio>
 
-  <% if caption.to_s.empty? %>
+  <% unless caption.to_s.empty? %>
     <%# TODO render_markdown %>
     <figcaption class="caption audio-caption"><%= caption %></figcaption>
   <% end %>

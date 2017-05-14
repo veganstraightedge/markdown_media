@@ -1,44 +1,44 @@
 require "spec_helper"
 
 RSpec.describe MarkdownMedia do
-  describe "#expanded_embed for image" do
-    it "finds an image embed" do
-      result = MarkdownMedia.expanded_embed("http://example.com/photo.png")
+  describe "#expanded_embed for audio" do
+    it "finds an audio embed" do
+      result = MarkdownMedia.expanded_embed("http://example.com/audio.mp3")
 
-      expect_result = %q{<figure id=""><img src="http://example.com/photo.png" /></figure>}
+      expect_result = %q{<figure id=""><audio controls><source src="http://example.com/audio.mp3" /></audio></figure>}
       expect(strip_html_whitespace(result)).to eq(expect_result)
     end
 
-    it "finds an image embed with a caption" do
+    it "finds an audio embed with a caption" do
       result = MarkdownMedia.expanded_embed(
-        "http://example.com/photo.png",
-        caption: "photo caption"
+        "http://example.com/audio.mp3",
+        caption: "audio caption"
       )
 
-      expect_result = %q{<figure id=""><img src="http://example.com/photo.png" /><figcaption>photo caption</figcaption></figure>}
+      expect_result = %q{<figure id=""><audio controls><source src="http://example.com/audio.mp3" /></audio><figcaption class="caption audio-caption">audio caption</figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expect_result)
     end
 
-    it "finds an image embed with a caption and link" do
+    it "finds an audio embed with a caption and link" do
       result = MarkdownMedia.expanded_embed(
-        "http://example.com/photo.png",
-        caption: "photo caption",
+      "http://example.com/audio.mp3",
+        caption: "audio caption",
         link:    "http://example.com/linked-destination"
       )
 
-      expect_result = %q{<figure id=""><a href="http://example.com/linked-destination"><img src="http://example.com/photo.png" /></a><figcaption>photo caption</figcaption></figure>}
+      expect_result = %q{<figure id=""><audio controls><source src="http://example.com/audio.mp3" /></audio><figcaption class="caption audio-caption">audio caption</figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expect_result)
     end
 
-    it "finds an image embed with a caption, link and id" do
+    it "finds an audio embed with a caption, link and id" do
       result = MarkdownMedia.expanded_embed(
-        "http://example.com/photo.png",
-        caption: "photo caption",
+        "http://example.com/audio.mp3",
+        caption: "audio caption",
         link:    "http://example.com/linked-destination",
-        id:      "photo"
+        id:      "audio"
       )
 
-      expect_result = %q{<figure id="photo"><a href="http://example.com/linked-destination"><img src="http://example.com/photo.png" /></a><figcaption>photo caption</figcaption></figure>}
+      expect_result = %q{<figure id="audio"><audio controls><source src="http://example.com/audio.mp3" /></audio><figcaption class="caption audio-caption">audio caption</figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expect_result)
     end
   end
