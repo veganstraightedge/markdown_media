@@ -1,44 +1,44 @@
 require "spec_helper"
 
 RSpec.describe MarkdownMedia do
-  describe "#expanded_embed for image" do
-    it "finds an image embed" do
-      result = MarkdownMedia.expanded_embed("http://example.com/photo.png")
+  describe "#expanded_embed for youtube" do
+    it "finds an youtube embed" do
+      result = MarkdownMedia.expanded_embed("https://www.youtube.com/watch?v=YX40hbAHx3s")
 
-      expected_result = %q{<figure id=""><img src="http://example.com/photo.png" /></figure>}
+      expected_result = %q{<figure class="video-container" id=""><iframe src="https://www.youtube.com/embed/YX40hbAHx3s" frameborder="0" allowfullscreen></iframe></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
-    it "finds an image embed with a caption" do
+    it "finds an youtube embed with a caption" do
       result = MarkdownMedia.expanded_embed(
-        "http://example.com/photo.png",
-        caption: "photo caption"
+        "https://www.youtube.com/watch?v=YX40hbAHx3s",
+        caption: "youtube caption"
       )
 
-      expected_result = %q{<figure id=""><img src="http://example.com/photo.png" /><figcaption>photo caption</figcaption></figure>}
+      expected_result = %q{<figure class="video-container" id=""><iframe src="https://www.youtube.com/embed/YX40hbAHx3s" frameborder="0" allowfullscreen></iframe><figcaption class="caption video-caption video-caption-youtube">youtube caption</figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
-    it "finds an image embed with a caption and link" do
+    it "finds an youtube embed with a caption and link" do
       result = MarkdownMedia.expanded_embed(
-        "http://example.com/photo.png",
-        caption: "photo caption",
+        "https://www.youtube.com/watch?v=YX40hbAHx3s",
+        caption: "youtube caption",
         link:    "http://example.com/linked-destination"
       )
 
-      expected_result = %q{<figure id=""><a href="http://example.com/linked-destination"><img src="http://example.com/photo.png" /></a><figcaption>photo caption</figcaption></figure>}
+      expected_result = %q{<figure class="video-container" id=""><iframe src="https://www.youtube.com/embed/YX40hbAHx3s" frameborder="0" allowfullscreen></iframe><figcaption class="caption video-caption video-caption-youtube">youtube caption</figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
-    it "finds an image embed with a caption, link and id" do
+    it "finds an youtube embed with a caption, link and id" do
       result = MarkdownMedia.expanded_embed(
-        "http://example.com/photo.png",
-        caption: "photo caption",
+        "https://www.youtube.com/watch?v=YX40hbAHx3s",
+        caption: "youtube caption",
         link:    "http://example.com/linked-destination",
-        id:      "photo"
+        id:      "youtube"
       )
 
-      expected_result = %q{<figure id="photo"><a href="http://example.com/linked-destination"><img src="http://example.com/photo.png" /></a><figcaption>photo caption</figcaption></figure>}
+      expected_result = %q{<figure class="video-container" id="youtube"><iframe src="https://www.youtube.com/embed/YX40hbAHx3s" frameborder="0" allowfullscreen></iframe><figcaption class="caption video-caption video-caption-youtube">youtube caption</figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
   end
