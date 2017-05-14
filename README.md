@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/veganstraightedge/markdown_media.svg?branch=master)](https://travis-ci.org/veganstraightedge/markdown_media)
 [![Code Climate](https://codeclimate.com/github/veganstraightedge/markdown_media/badges/gpa.svg)](https://codeclimate.com/github/veganstraightedge/markdown_media)
-![Version 0.1.0](https://img.shields.io/badge/VERSION-0.1.0-green.svg)
+![Version 1.0.0](https://img.shields.io/badge/VERSION-1.0.0-green.svg)
 
 This syntax uses doubles square brackets on each side of a URL and optional options.
 It expands into the current preferred embed code for that site's media or raw media.
@@ -32,6 +32,8 @@ gem install markdown_media
 
 ## Usage
 
+### As a Writer
+
 This a syntax that can sit on top of Markdown (or any templating format, except MediaWiki which already uses the double square bracket syntax). The purpose is to simplify adding images (with or without caption and optionally linked), videos, tweets, audio, etc for writers in a CMS. The HTML that we want for a video is different from an image. But as a writer, it's conceptually the same, "here's a piece of media and its caption, stick it in the page right here".
 
 So, the media embed syntax makes it so you don't have to think about the differences between YouTube, Vimeo, Twitter and an image. Here's how it works.
@@ -57,6 +59,18 @@ Here's what they all mean.
 - **Optional**. If you need the media to have a certain id on the generated HTML (so that you can link to it), you can add id:desired-id-with-no-spaces as the last item in the media embed.
 - **Required**. Always end the media embed with two right square brackets (no space between them).
 - **Required**. Always put a blank line below the media embed
+
+### As a Developer
+
+```
+MarkdownMedia.parse("[[https://example.com/photo.png]]")
+```
+
+In Rails, you might also need to add `.html_safe` to avoid escaping.
+
+```
+MarkdownMedia.parse("[[https://example.com/photo.png]]").html_safe
+```
 
 ### Examples
 
