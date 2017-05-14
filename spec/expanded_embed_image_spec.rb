@@ -15,7 +15,7 @@ RSpec.describe MarkdownMedia do
         caption: "photo caption"
       )
 
-      expected_result = %q{<figure id=""><img src="http://example.com/photo.png" /><figcaption>photo caption</figcaption></figure>}
+      expected_result = %q{<figure id=""><img src="http://example.com/photo.png" /><figcaption><p>photo caption</p></figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
@@ -26,7 +26,7 @@ RSpec.describe MarkdownMedia do
         link:    "http://example.com/linked-destination"
       )
 
-      expected_result = %q{<figure id=""><a href="http://example.com/linked-destination"><img src="http://example.com/photo.png" /></a><figcaption>photo caption</figcaption></figure>}
+      expected_result = %q{<figure id=""><a href="http://example.com/linked-destination"><img src="http://example.com/photo.png" /></a><figcaption><p>photo caption</p></figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
@@ -38,7 +38,7 @@ RSpec.describe MarkdownMedia do
         id:      "photo"
       )
 
-      expected_result = %q{<figure id="photo"><a href="http://example.com/linked-destination"><img src="http://example.com/photo.png" /></a><figcaption>photo caption</figcaption></figure>}
+      expected_result = %q{<figure id="photo"><a href="http://example.com/linked-destination"><img src="http://example.com/photo.png" /></a><figcaption><p>photo caption</p></figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
   end

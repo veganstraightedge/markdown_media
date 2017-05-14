@@ -15,7 +15,7 @@ RSpec.describe MarkdownMedia do
         caption: "youtube caption"
       )
 
-      expected_result = %q{<figure class="video-container" id=""><iframe src="https://www.youtube.com/embed/YX40hbAHx3s" frameborder="0" allowfullscreen></iframe><figcaption class="caption video-caption video-caption-youtube">youtube caption</figcaption></figure>}
+      expected_result = %q{<figure class="video-container" id=""><iframe src="https://www.youtube.com/embed/YX40hbAHx3s" frameborder="0" allowfullscreen></iframe><figcaption class="caption video-caption video-caption-youtube"><p>youtube caption</p></figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
@@ -26,7 +26,7 @@ RSpec.describe MarkdownMedia do
         link:    "http://example.com/linked-destination"
       )
 
-      expected_result = %q{<figure class="video-container" id=""><iframe src="https://www.youtube.com/embed/YX40hbAHx3s" frameborder="0" allowfullscreen></iframe><figcaption class="caption video-caption video-caption-youtube">youtube caption</figcaption></figure>}
+      expected_result = %q{<figure class="video-container" id=""><iframe src="https://www.youtube.com/embed/YX40hbAHx3s" frameborder="0" allowfullscreen></iframe><figcaption class="caption video-caption video-caption-youtube"><p>youtube caption</p></figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
@@ -38,7 +38,7 @@ RSpec.describe MarkdownMedia do
         id:      "youtube"
       )
 
-      expected_result = %q{<figure class="video-container" id="youtube"><iframe src="https://www.youtube.com/embed/YX40hbAHx3s" frameborder="0" allowfullscreen></iframe><figcaption class="caption video-caption video-caption-youtube">youtube caption</figcaption></figure>}
+      expected_result = %q{<figure class="video-container" id="youtube"><iframe src="https://www.youtube.com/embed/YX40hbAHx3s" frameborder="0" allowfullscreen></iframe><figcaption class="caption video-caption video-caption-youtube"><p>youtube caption</p></figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
   end

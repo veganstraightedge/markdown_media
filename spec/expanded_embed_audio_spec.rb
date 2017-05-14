@@ -15,7 +15,7 @@ RSpec.describe MarkdownMedia do
         caption: "audio caption"
       )
 
-      expected_result = %q{<figure id=""><audio controls><source src="http://example.com/audio.mp3" /></audio><figcaption class="caption audio-caption">audio caption</figcaption></figure>}
+      expected_result = %q{<figure id=""><audio controls><source src="http://example.com/audio.mp3" /></audio><figcaption class="caption audio-caption"><p>audio caption</p></figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
@@ -26,7 +26,7 @@ RSpec.describe MarkdownMedia do
         link:    "http://example.com/linked-destination"
       )
 
-      expected_result = %q{<figure id=""><audio controls><source src="http://example.com/audio.mp3" /></audio><figcaption class="caption audio-caption">audio caption</figcaption></figure>}
+      expected_result = %q{<figure id=""><audio controls><source src="http://example.com/audio.mp3" /></audio><figcaption class="caption audio-caption"><p>audio caption</p></figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
@@ -38,7 +38,7 @@ RSpec.describe MarkdownMedia do
         id:      "audio"
       )
 
-      expected_result = %q{<figure id="audio"><audio controls><source src="http://example.com/audio.mp3" /></audio><figcaption class="caption audio-caption">audio caption</figcaption></figure>}
+      expected_result = %q{<figure id="audio"><audio controls><source src="http://example.com/audio.mp3" /></audio><figcaption class="caption audio-caption"><p>audio caption</p></figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
   end

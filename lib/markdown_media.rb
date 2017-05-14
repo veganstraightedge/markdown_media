@@ -1,6 +1,7 @@
 require "markdown_media/version"
 require "open-uri"
 require "erb"
+require "kramdown"
 
 module MarkdownMedia
   EMBED_REGEX = /\[\[\s*(http[^\]\s]+(?:\s.+)?)\s*\]\]/
@@ -104,5 +105,15 @@ module MarkdownMedia
       erb = ERB.new(template)
       erb.result(binding)
     end
+
+    def render_markdown(text)
+      ::Kramdown::Document.new(
+        text,
+        input: :kramdown,
+        remove_block_html_tags: false,
+        transliterated_header_ids: true
+      ).to_html
+    end
+
   end
 end

@@ -4,7 +4,6 @@
   </audio>
 
   <% unless caption.to_s.empty? %>
-    <%# TODO render_markdown %>
-    <figcaption class="caption audio-caption"><%= caption %></figcaption>
+    <figcaption class="caption audio-caption"><%= MarkdownMedia.render_markdown caption %></figcaption>
   <% end %>
 </figure>

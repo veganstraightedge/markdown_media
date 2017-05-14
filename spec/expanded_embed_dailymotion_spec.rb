@@ -15,7 +15,7 @@ RSpec.describe MarkdownMedia do
         caption: "dailymotion video caption"
       )
 
-      expected_result = %q{<figure class="video-container" id=""><iframe frameborder="0" src="//www.dailymotion.com/embed/video/x5h2f98" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><figcaption class="caption video-caption video-caption-vimeo">dailymotion video caption</figcaption></figure>}
+      expected_result = %q{<figure class="video-container" id=""><iframe frameborder="0" src="//www.dailymotion.com/embed/video/x5h2f98" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><figcaption class="caption video-caption video-caption-vimeo"><p>dailymotion video caption</p></figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
@@ -26,7 +26,7 @@ RSpec.describe MarkdownMedia do
         link:    "http://example.com/linked-destination"
       )
 
-      expected_result = %q{<figure class="video-container" id=""><iframe frameborder="0" src="//www.dailymotion.com/embed/video/x5h2f98" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><figcaption class="caption video-caption video-caption-vimeo">dailymotion video caption</figcaption></figure>}
+      expected_result = %q{<figure class="video-container" id=""><iframe frameborder="0" src="//www.dailymotion.com/embed/video/x5h2f98" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><figcaption class="caption video-caption video-caption-vimeo"><p>dailymotion video caption</p></figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
@@ -38,7 +38,7 @@ RSpec.describe MarkdownMedia do
         id:      "dailymotion"
       )
 
-      expected_result = %q{<figure class="video-container" id="dailymotion"><iframe frameborder="0" src="//www.dailymotion.com/embed/video/x5h2f98" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><figcaption class="caption video-caption video-caption-vimeo">dailymotion video caption</figcaption></figure>}
+      expected_result = %q{<figure class="video-container" id="dailymotion"><iframe frameborder="0" src="//www.dailymotion.com/embed/video/x5h2f98" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe><figcaption class="caption video-caption video-caption-vimeo"><p>dailymotion video caption</p></figcaption></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
   end

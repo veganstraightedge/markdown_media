@@ -5,8 +5,7 @@
 
   <% unless caption.to_s.empty? %>
     <figcaption class="caption video-caption">
-      <%# TODO render_markdown %>
-      <%= caption %>
+      <%= MarkdownMedia.render_markdown caption %>
     </figcaption>
   <% end %>
 </figure>

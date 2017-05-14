@@ -19,8 +19,7 @@
       </a>
     <% end %>
 
-    <%# TODO render_markdown %>
-    <figcaption><%= caption %></figcaption>
+    <figcaption><%= MarkdownMedia.render_markdown caption %></figcaption>
   </figure>
 
 <% end %>
