@@ -5,14 +5,7 @@ RSpec.describe MarkdownMedia do
     it "finds an image embed" do
       result = MarkdownMedia.expanded_embed("http://example.com/photo.png")
 
-      expected_result = {
-        locals: {
-          embed_id: "http://example.com/photo.png",
-          caption:  nil,
-          link:     nil,
-          id:       nil
-        }
-      }
+      expected_result = "http://example.com/photo.png   "
 
       expect(result).to eq(expected_result)
     end
@@ -23,14 +16,7 @@ RSpec.describe MarkdownMedia do
         caption: "photo caption"
       )
 
-      expected_result = {
-        locals: {
-          embed_id: "http://example.com/photo.png",
-          caption:  "photo caption",
-          link:     nil,
-          id:       nil
-        }
-      }
+      expected_result = "http://example.com/photo.png photo caption  "
 
       expect(result).to eq(expected_result)
     end
@@ -42,14 +28,7 @@ RSpec.describe MarkdownMedia do
         link:    "http://example.com/linked-destination"
       )
 
-      expected_result = {
-        locals: {
-          embed_id: "http://example.com/photo.png",
-          caption:  "photo caption",
-          link:     "http://example.com/linked-destination",
-          id:       nil
-        }
-      }
+      expected_result = "http://example.com/photo.png photo caption http://example.com/linked-destination "
 
       expect(result).to eq(expected_result)
     end
@@ -62,14 +41,7 @@ RSpec.describe MarkdownMedia do
         id:      "foo"
       )
 
-      expected_result = {
-        locals: {
-          embed_id: "http://example.com/photo.png",
-          caption:  "photo caption",
-          link:     "http://example.com/linked-destination",
-          id:       "foo"
-        }
-      }
+      expected_result = "http://example.com/photo.png photo caption http://example.com/linked-destination foo"
 
       expect(result).to eq(expected_result)
     end

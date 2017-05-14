@@ -1,5 +1,6 @@
 require "markdown_media/version"
 require "open-uri"
+require "erb"
 
 module MarkdownMedia
   EMBED_REGEX = /\[\[\s*(http[^\]\s]+(?:\s.+)?)\s*\]\]/
@@ -19,10 +20,7 @@ module MarkdownMedia
           end
           caption = embed_tag_pieces.join(" ")
 
-          # expanded_embed(url, caption: caption, link: link, id: id)
-
-
-          [url, caption, link, id]
+          expanded_embed(url, caption: caption, link: link, id: id)
         end
       end
 
@@ -90,10 +88,15 @@ module MarkdownMedia
         end
       end
 
-      # render_to_string partial: "/articles/embeds/#{slug}.html.erb", locals: { embed_id: embed_id || url, caption: caption, link: link, id: id }
-      return {locals: { embed_id: embed_id || url.to_s, caption: caption, link: link, id: id }}
+      render_erb slug, { embed_id: embed_id || url.to_s, caption: caption, link: link, id: id }
     end
 
+    def render_erb(template_slug, locals)
+      template_path = "/templates/#{template_slug}.erb"
+      template      = File.read(File.expand_path File.dirname(__FILE__) + template_path)
 
+      erb = ERB.new(template)
+      erb.result(binding)
+    end
   end
 end
