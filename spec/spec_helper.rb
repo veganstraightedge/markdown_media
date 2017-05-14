@@ -10,6 +10,8 @@ RSpec.configure do |config|
   end
 
   def strip_html_whitespace(html)
-    html.strip.gsub(/\n/, "").gsub(/>\W*</, "><")
+    html.strip.gsub(/\n/, "").
+               gsub(/>\s*/, ">").
+               gsub(/\s*</, "<")
   end
 end
