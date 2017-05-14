@@ -8,4 +8,8 @@ RSpec.configure do |config|
   config.expect_with :rspec do |c|
     c.syntax = :expect
   end
+
+  def strip_html_whitespace(html)
+    html.strip.gsub(/\n/, "").gsub(/>\W*</, "><")
+  end
 end

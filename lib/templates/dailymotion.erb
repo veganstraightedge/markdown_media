@@ -1,0 +1,11 @@
+<figure class="video-container" id="<%= id %>">
+  <iframe frameborder="0" src="//www.dailymotion.com/embed/video/<%= embed_id %>" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+
+  <% if caption.to_s.empty? %>
+    <figcaption class="caption video-caption video-caption-vimeo">
+      <%# TODO render_markdown %>
+      <%= caption %>
+    </figcaption>
+  <% end %>
+</figure>
+

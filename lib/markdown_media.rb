@@ -95,6 +95,11 @@ module MarkdownMedia
       template_path = "/templates/#{template_slug}.erb"
       template      = File.read(File.expand_path File.dirname(__FILE__) + template_path)
 
+      embed_id = locals[:embed_id]
+      caption  = locals[:caption]
+      link     = locals[:link]
+      id       = locals[:id]
+
       erb = ERB.new(template)
       erb.result(binding)
     end

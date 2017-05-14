@@ -1,1 +1,26 @@
-<%= locals[:embed_id] %> <%= locals[:caption] %> <%= locals[:link] %> <%= locals[:id] %>
+<% if caption.to_s.empty? %>
+
+  <figure id="<%= id %>">
+    <% if link.to_s.empty? %>
+      <img src="<%= embed_id %>" />
+    <% else %>
+      <a href="<%= link %>"><img src=<%= embed_id %> /></a>
+    <% end %>
+  </figure>
+
+<% else %>
+
+  <figure id="<%= id %>">
+    <% if link.to_s.empty? %>
+      <img src="<%= embed_id %>" />
+    <% else %>
+      <a href="<%= link %>">
+        <img src="<%= embed_id %>" />
+      </a>
+    <% end %>
+
+    <%# TODO render_markdown %>
+    <figcaption><%= caption %></figcaption>
+  </figure>
+
+<% end %>

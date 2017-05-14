@@ -2,11 +2,12 @@ require "spec_helper"
 
 RSpec.describe MarkdownMedia do
   describe "#render_erb" do
-    it "renders an inline template as string" do
-      locals = { embed_id: "1234", caption: "photo caption", link: "http://example.com", id: "foo" }
+    it "renders the proper template" do
+      locals = { embed_id: "http://example.com/photo.png", caption: "photo caption", link: "http://example.com", id: "photo" }
       result = MarkdownMedia.render_erb("image", locals)
 
-      expect(result).to eq("1234 photo caption http://example.com foo")
+      expect_result = %q{<figure id="photo"><a href="http://example.com"><img src="http://example.com/photo.png" /></a><figcaption>photo caption</figcaption></figure>}
+      expect(strip_html_whitespace(result)).to eq(expect_result)
     end
   end
 end
