@@ -14,7 +14,7 @@ RSpec.describe MarkdownMedia do
       expect(result).to eq("lorem ipsum")
     end
 
-    it 'matches [[]] syntax patterns' do
+    it "matches [[]] syntax patterns" do
       result = MarkdownMedia.parse("lorem ipsum [[http://example.com/photo.png]] dolor sit")
 
       expected_output = "lorem ipsum " + ["http://example.com/photo.png", "", nil].to_s + " dolor sit"
