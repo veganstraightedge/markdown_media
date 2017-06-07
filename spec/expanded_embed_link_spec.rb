@@ -5,7 +5,7 @@ RSpec.describe MarkdownMedia do
     it "finds an link embed" do
       result = MarkdownMedia.expanded_embed("http://example.com/something/unknown")
 
-      expected_result = %q{<a href="http://example.com/something/unknown" id="">example.com/something/unknown</a>}
+      expected_result = %q{<a href="http://example.com/something/unknown" id="" class="">example.com/something/unknown</a>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
@@ -15,7 +15,7 @@ RSpec.describe MarkdownMedia do
         caption: "link caption"
       )
 
-      expected_result = %q{<a href="http://example.com/something/unknown" id="">link caption</a>}
+      expected_result = %q{<a href="http://example.com/something/unknown" id="" class="">link caption</a>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
@@ -26,7 +26,7 @@ RSpec.describe MarkdownMedia do
         link:    "http://example.com/linked-destination"
       )
 
-      expected_result = %q{<a href="http://example.com/something/unknown" id="">link caption</a>}
+      expected_result = %q{<a href="http://example.com/something/unknown" id="" class="">link caption</a>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
@@ -38,7 +38,7 @@ RSpec.describe MarkdownMedia do
         id:      "link"
       )
 
-      expected_result = %q{<a href="http://example.com/something/unknown" id="link">link caption</a>}
+      expected_result = %q{<a href="http://example.com/something/unknown" id="link" class="">link caption</a>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
   end

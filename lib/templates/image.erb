@@ -1,6 +1,6 @@
 <% if caption.to_s.empty? %>
 
-  <figure id="<%= id %>">
+  <figure id="<%= id %>" class="<%= klass %>">
     <% if link.to_s.empty? %>
       <img src="<%= embed_id %>" />
     <% else %>
@@ -10,7 +10,7 @@
 
 <% else %>
 
-  <figure id="<%= id %>">
+  <figure id="<%= id %>" class="<%= klass %>">
     <% if link.to_s.empty? %>
       <img src="<%= embed_id %>" />
     <% else %>

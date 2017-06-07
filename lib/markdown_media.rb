@@ -16,13 +16,15 @@ module MarkdownMedia
 
           url     = embed_tag_pieces.shift
           id      = remove_id(embed_tag_pieces)
-          link    = if embed_tag_pieces.to_s.empty?
+          klass   = remove_class(embed_tag_pieces)
+
+          link    = unless embed_tag_pieces.to_s.empty?
             embed_tag_pieces.pop if url_or_path?(embed_tag_pieces.last)
           end
 
           caption = embed_tag_pieces.join(" ")
 
-          expanded_embed(url, caption: caption, link: link, id: id)
+          expanded_embed(url, caption: caption, link: link, id: id, klass: klass)
         end
       end
 
@@ -31,6 +33,19 @@ module MarkdownMedia
 
     def url_or_path?(string)
       string =~ /^(http|\/)\S+/ ? true : false
+    end
+
+    def remove_class(pieces)
+      return if pieces.to_s.empty?
+
+      klass_string = pieces.detect { |piece| piece =~ /class:\S+/ }
+
+      if klass_string
+        klass = klass_string.split(":").last
+        pieces.delete(klass_string)
+
+        klass
+      end
     end
 
     def remove_id(pieces)
@@ -46,7 +61,7 @@ module MarkdownMedia
       end
     end
 
-    def expanded_embed(url, caption: nil, link: nil, id: nil)
+    def expanded_embed(url, caption: nil, link: nil, id: nil, klass: nil)
       url  = URI.parse(url)
 
       case url.host
@@ -90,7 +105,7 @@ module MarkdownMedia
         end
       end
 
-      render_erb slug, { embed_id: embed_id || url.to_s, caption: caption, link: link, id: id }
+      render_erb slug, { embed_id: embed_id || url.to_s, caption: caption, link: link, id: id, klass: klass }
     end
 
     def render_erb(template_slug, locals)
@@ -101,6 +116,7 @@ module MarkdownMedia
       caption  = locals[:caption]
       link     = locals[:link]
       id       = locals[:id]
+      klass    = locals[:klass]
 
       erb = ERB.new(template)
       erb.result(binding)
