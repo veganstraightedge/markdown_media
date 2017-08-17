@@ -13,5 +13,11 @@ RSpec.describe MarkdownMedia do
 
       expect(result).to eq("lorem ipsum")
     end
+
+    it "parses images without a caption correctly" do
+      result = MarkdownMedia.parse("[[http://example.com/image.png http://example.com class:portrait]]")
+
+      expect(result).to include('src="http://example.com/image.png"')
+    end
   end
 end
