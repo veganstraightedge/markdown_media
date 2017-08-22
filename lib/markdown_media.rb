@@ -91,6 +91,9 @@ module MarkdownMedia
       when "twitter.com"
         slug     = "twitter"
 
+      when /instagram/
+        slug     = "instagram"
+
       else
         slug = case url.path
 
