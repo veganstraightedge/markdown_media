@@ -17,6 +17,7 @@ module MarkdownMedia
           url     = embed_tag_pieces.shift
           id      = remove_id(embed_tag_pieces)
           klass   = remove_class(embed_tag_pieces)
+          type    = remove_type(embed_tag_pieces)
 
           link    = unless embed_tag_pieces.to_s.empty?
             embed_tag_pieces.pop if url_or_path?(embed_tag_pieces.last)
@@ -24,7 +25,7 @@ module MarkdownMedia
 
           caption = embed_tag_pieces.join(" ")
 
-          expanded_embed(url, caption: caption, link: link, id: id, klass: klass)
+          expanded_embed(url, caption: caption, link: link, id: id, type: type, klass: klass)
         end
       end
 
@@ -61,7 +62,20 @@ module MarkdownMedia
       end
     end
 
-    def expanded_embed(url, caption: nil, link: nil, id: nil, klass: nil)
+    def remove_type(pieces)
+      return if pieces.to_s.empty?
+
+      type_string = pieces.detect { |piece| piece =~ /type:\S+/ }
+
+      if type_string
+        type = type_string.split(":").last
+        pieces.delete(type_string)
+
+        type
+      end
+    end
+
+    def expanded_embed(url, caption: nil, link: nil, id: nil, type: nil, klass: nil)
       url  = URI.parse(url)
 
       case url.host
@@ -90,6 +104,7 @@ module MarkdownMedia
 
       when "twitter.com"
         slug     = "twitter"
+        type   ||= "tweet"
 
       when /instagram/
         slug     = "instagram"
@@ -108,7 +123,7 @@ module MarkdownMedia
         end
       end
 
-      render_erb slug, { embed_id: embed_id || url.to_s, caption: caption, link: link, id: id, klass: klass }
+      render_erb slug, { embed_id: embed_id || url.to_s, caption: caption, link: link, id: id, type: type, klass: klass }
     end
 
     def render_erb(template_slug, locals)
@@ -119,6 +134,7 @@ module MarkdownMedia
       caption  = locals[:caption]
       link     = locals[:link]
       id       = locals[:id]
+      type     = locals[:type]
       klass    = locals[:klass]
 
       erb = ERB.new(template)
