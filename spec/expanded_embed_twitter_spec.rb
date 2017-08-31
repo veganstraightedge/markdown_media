@@ -45,10 +45,8 @@ RSpec.describe MarkdownMedia do
     it "finds a tweet embed for a video" do
       result = MarkdownMedia.expanded_embed(
         "https://twitter.com/Breaking911/status/900211169734131713",
-        caption: "tweet caption",
-        link:    "http://example.com/linked-destination",
-        id:      "tweet",
-        type:    "video"
+        id:   "tweet",
+        type: "video"
       )
 
       expected_result = %q{<blockquote class="twitter-video " data-status="hidden" data-lang="en" id="tweet"><a href="https://twitter.com/Breaking911/status/900211169734131713">https://twitter.com/Breaking911/status/900211169734131713</a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>}
