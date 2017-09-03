@@ -6,7 +6,7 @@
 
 This syntax uses doubles square brackets on each side of a URL and optional options.
 It expands into the current preferred embed code for that site's media or raw media.
-Supported media types: YouTube, Vimeo, Instagram, Twitter, images, videos, audios.
+Supported media types: YouTube, Vimeo, Instagram, Twitter, Daily Motion, images, videos, audios.
 
 
 ## Installation
