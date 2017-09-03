@@ -46,6 +46,8 @@ media URL
 caption
 link URL (for images only)
 HTML id
+HTML class
+type (used for Twitter video)
 ]]
 ```
 
@@ -181,7 +183,7 @@ A simple audio with caption.
 Any URL in a [[]] block that is unrecognized, just gets rendered into a linked URL.
 
 ```
-[[https://veganstraightedge.com/cancer]] gets turned into <a href="https://veganstraightedge.com/cancer">https://veganstraightedge.com</a>.
+[[https://veganstraightedge.com/cancer]] gets turned into <a href="https://veganstraightedge.com/cancer">https://veganstraightedge.com/cancer</a>.
 ```
 
 If you try to embed some piece of media and it renders to a URL that means that that kind of URL isn't supported yet. But don't distress, new sites are pretty easy to add. So, raise a flag in Slack or GitHub Issues.
@@ -204,6 +206,7 @@ Here are the currently supported URLs and media types.
 - https://www.youtube.com/watch?v=video-id
 - https://youtu.be/video-id
 - http://www.dailymotion.com/video/video-id_video-slug
+- https://twitter.com/Breaking911/status/900211169734131713
 
 #### Audios
 
