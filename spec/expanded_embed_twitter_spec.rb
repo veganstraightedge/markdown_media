@@ -49,7 +49,7 @@ RSpec.describe MarkdownMedia do
         type: "video"
       )
 
-      expected_result = %q{<blockquote class="twitter-video " data-status="hidden" data-lang="en" id="tweet"><a href="https://twitter.com/Breaking911/status/900211169734131713">https://twitter.com/Breaking911/status/900211169734131713</a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>}
+      expected_result = %q{<figure class="video-container"><blockquote class="twitter-video " data-status="hidden" data-lang="en" id="tweet"><a href="https://twitter.com/Breaking911/status/900211169734131713">https://twitter.com/Breaking911/status/900211169734131713</a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></figure>}
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
   end

@@ -1,4 +1,6 @@
-<blockquote class="twitter-<%=type %> <%= klass %>" <%= 'data-status="hidden"' if type == "video" %> data-lang="en" id="<%= id %>">
-  <a href="<%= embed_id.to_s %>"><%= embed_id.to_s %></a>
-</blockquote>
-<script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<% if type == "video" %><figure class="video-container"><% end %>
+  <blockquote class="twitter-<%=type %> <%= klass %>" <%= 'data-status="hidden"' if type == "video" %> data-lang="en" id="<%= id %>">
+    <a href="<%= embed_id.to_s %>"><%= embed_id.to_s %></a>
+  </blockquote>
+  <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+<% if type == "video" %></figure><% end %>
