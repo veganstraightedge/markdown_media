@@ -1,5 +1,5 @@
 <figure class="video-container <%= klass %>" id="<%= id %>">
-  <iframe src="https://www.youtube.com/embed/<%= embed_id %>" frameborder="0" allowfullscreen></iframe>
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/<%= embed_id %>" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
 
   <% unless caption.to_s.empty? %>
     <figcaption class="caption video-caption video-caption-youtube">
