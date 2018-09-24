@@ -2,30 +2,30 @@
 
 [![Build Status](https://travis-ci.org/veganstraightedge/markdown_media.svg?branch=master)](https://travis-ci.org/veganstraightedge/markdown_media)
 [![Code Climate](https://codeclimate.com/github/veganstraightedge/markdown_media/badges/gpa.svg)](https://codeclimate.com/github/veganstraightedge/markdown_media)
-![Version 1.0.0](https://img.shields.io/badge/VERSION-1.2.1-green.svg)
+![Version 1.2.1](https://img.shields.io/badge/VERSION-1.2.1-green.svg)
 
 This syntax uses doubles square brackets on each side of a URL and optional options.
-It expands into the current preferred embed code for that site's media or raw media.
+It expands into the current preferred embed code for that site’s media or raw media.
 Supported media types: YouTube, Vimeo, Instagram, Twitter, Daily Motion, images, videos, audios.
 
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your application’s Gemfile:
 
 ```ruby
-gem "markdown_media"
+gem 'markdown_media'
 ```
 
 And then execute:
 
-```
+```sh
 bundle
 ```
 
 Or install it yourself as:
 
-```
+```sh
 gem install markdown_media
 ```
 
@@ -34,11 +34,11 @@ gem install markdown_media
 
 ### As a Writer
 
-This a syntax that can sit on top of Markdown (or any templating format, except MediaWiki which already uses the double square bracket syntax). The purpose is to simplify adding images (with or without caption and optionally linked), videos, tweets, audio, etc for writers in a CMS. The HTML that we want for a video is different from an image. But as a writer, it's conceptually the same, "here's a piece of media and its caption, stick it in the page right here".
+This a syntax that can sit on top of Markdown (or any templating format, except MediaWiki which already uses the double square bracket syntax). The purpose is to simplify adding images (with or without caption and optionally linked), videos, tweets, audio, etc for writers in a CMS. The HTML that we want for a video is different from an image. But as a writer, it’s conceptually the same, “here’s a piece of media and its caption, stick it in the page right here”.
 
-So, the media embed syntax makes it so you don't have to think about the differences between YouTube, Vimeo, Twitter and an image. Here's how it works.
+So, the media embed syntax makes it so you don’t have to think about the differences between YouTube, Vimeo, Twitter and an image. Here’s how it works.
 
-There are six pieces. Some are required. Some are optional. It must always be on one line. But for explanation here, I'll put them on separate lines, then tie it all together.
+There are six pieces. Some are required. Some are optional. It must always be on one line. But for explanation here, I’ll put them on separate lines, then tie it all together.
 
 ```
 [[
@@ -51,7 +51,7 @@ type (used for Twitter video)
 ]]
 ```
 
-Here's what they all mean.
+Here’s what they all mean.
 
 - **Required**. Always put a blank line above the media embed
 - **Required**. Always start the media embed with two left square brackets (no space between them).
@@ -64,14 +64,14 @@ Here's what they all mean.
 
 ### As a Developer
 
-```
-MarkdownMedia.parse("[[https://example.com/photo.png]]")
+```ruby
+MarkdownMedia.parse('[[https://example.com/photo.png]]')
 ```
 
 In Rails, you might also need to add `.html_safe` to avoid escaping.
 
-```
-MarkdownMedia.parse("[[https://example.com/photo.png]]").html_safe
+```ruby
+MarkdownMedia.parse('[[https://example.com/photo.png]]').html_safe
 ```
 
 ### Examples
@@ -87,13 +87,13 @@ A simple image.
 An image with a caption.
 
 ```
-[[https://example.com/image.png Look at me, I'm a caption!]]
+[[https://example.com/image.png Look at me, I’m a caption!]]
 ```
 
 An image with Markdown in the caption.
 
 ```
-[[https://example.com/image.png _Look at me_, I'm a **caption**!]]
+[[https://example.com/image.png _Look at me_, I’m a **caption**!]]
 ```
 
 An image linked to a URL (requires a caption present).
@@ -146,7 +146,7 @@ A video from YouTube with caption.
 [[https://www.youtube.com/watch?v=YX40hbAHx3s P vs. NP and the Computational Complexity Zoo]]
 ```
 
-YouTube's short URL format also works.
+YouTube’s short URL format also works.
 
 ```
 [[https://youtu.be/YX40hbAHx3s]]
@@ -183,10 +183,16 @@ A simple audio with caption.
 Any URL in a [[]] block that is unrecognized, just gets rendered into a linked URL.
 
 ```
-[[https://veganstraightedge.com/cancer]] gets turned into <a href="https://veganstraightedge.com/cancer">https://veganstraightedge.com/cancer</a>.
+[[https://veganstraightedge.com/cancer]]
 ```
 
-If you try to embed some piece of media and it renders to a URL that means that that kind of URL isn't supported yet. But don't distress, new sites are pretty easy to add. So, raise a flag in Slack or GitHub Issues.
+That gets turned into this.
+
+```html
+<a href='https://veganstraightedge.com/cancer'>https://veganstraightedge.com/cancer</a>.
+```
+
+If you try to embed some piece of media and it renders to a URL that means that that kind of URL isn’t supported yet. But don’t distress, new sites are pretty easy to add. So, raise a flag in Slack or GitHub Issues.
 
 ### Supported Media URLs
 
@@ -250,6 +256,6 @@ Your heart is as free as the air you breathe. <br>
 The ground you stand on is liberated territory.
 
 In legal text, *Markdown Media* is dedicated to the public domain
-using Creative Commons -- CC0 1.0 Universal.
+using Creative Commons — CC0 1.0 Universal.
 
-[http://creativecommons.org/publicdomain/zero/1.0](http://creativecommons.org/publicdomain/zero/1.0 "Creative Commons &mdash; CC0 1.0 Universal")
+[http://creativecommons.org/publicdomain/zero/1.0](http://creativecommons.org/publicdomain/zero/1.0 "Creative Commons — CC0 1.0 Universal")
