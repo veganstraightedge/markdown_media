@@ -109,6 +109,10 @@ module MarkdownMedia
       when /instagram/
         slug     = "instagram"
 
+      when "giphy.com"
+        slug     = "giphy"
+        embed_id = url.path.split("/").last
+
       else
         slug = case url.path
 
