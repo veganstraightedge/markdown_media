@@ -164,6 +164,18 @@ A video from Twitter.
 [[https://twitter.com/Breaking911/status/900211169734131713 type:video]]
 ```
 
+A video/gif from Giphy.
+
+```
+[[https://giphy.com/gifs/cat-funny-OrNbkY7oQOrh6]]
+```
+
+A video/gif from Giphy with caption.
+
+```
+[[https://giphy.com/gifs/cat-funny-OrNbkY7oQOrh6 Dogs and cats are buddies.]]
+```
+
 #### Audio
 
 A simple audio.
@@ -213,6 +225,7 @@ Here are the currently supported URLs and media types.
 - https://youtu.be/video-id
 - http://www.dailymotion.com/video/video-id_video-slug
 - https://twitter.com/Breaking911/status/900211169734131713
+- https://giphy.com/gifs/cat-funny-OrNbkY7oQOrh6
 
 #### Audios
 
