@@ -111,7 +111,7 @@ module MarkdownMedia
 
       when "giphy.com"
         slug     = "giphy"
-        embed_id = url.path.split("/").last
+        embed_id = url.path.split("/").last.split('-').last
 
       else
         slug = case url.path

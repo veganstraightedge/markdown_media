@@ -1,8 +1,10 @@
 <figure class="video-container <%= klass %>" id="<%= id %>">
-  <iframe src="https://giphy.com/embed/<%= embed_id %>" frameborder="0" class="giphy-embed" webkitallowfullscreen mozallowfullscreen allowFullScreen></iframe>
+  <div style="width:100%;height:0;padding-bottom:56%;position:relative;">
+    <iframe src="https://giphy.com/embed/<%= embed_id %>" width="100%" height="100%" style="position:absolute" frameborder="0" class="giphy-embed" webkitallowfullscreen mozallowfullscreen allowFullScreen></iframe>
+  </div>
 
   <% unless caption.to_s.empty? %>
-    <figcaption class="caption video-caption video-caption-vimeo">
+    <figcaption class="caption video-caption video-caption-giphy">
       <%= MarkdownMedia.render_markdown caption %>
     </figcaption>
   <% end %>
