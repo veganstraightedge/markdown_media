@@ -6,6 +6,7 @@ RSpec.describe MarkdownMedia do
       result = MarkdownMedia.expanded_embed("https://twitter.com/veganstraightedge/status/863151253911511040")
 
       expected_result = %q{<blockquote class="twitter-tweet "  data-lang="en" id=""><a href="https://twitter.com/veganstraightedge/status/863151253911511040">https://twitter.com/veganstraightedge/status/863151253911511040</a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>}
+
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 

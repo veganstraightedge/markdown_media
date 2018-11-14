@@ -7,7 +7,7 @@ module MarkdownMedia
   EMBED_REGEX = /\[\[\s*(http[^\]\s]+(?:\s.+)?)\s*\]\]/
 
   class << self
-    def parse(text)
+    def parse(text, include_media: true)
       output = text.gsub(EMBED_REGEX) do
         embed_tag = $1
 
@@ -25,7 +25,13 @@ module MarkdownMedia
 
           caption = embed_tag_pieces.join(" ")
 
-          expanded_embed(url, caption: caption, link: link, id: id, type: type, klass: klass)
+          expanded_embed(url,
+                         caption:       caption,
+                         link:          link,
+                         id:            id,
+                         type:          type,
+                         klass:         klass,
+                         include_media: include_media)
         end
       end
 
@@ -75,8 +81,27 @@ module MarkdownMedia
       end
     end
 
-    def expanded_embed(url, caption: nil, link: nil, id: nil, type: nil, klass: nil)
+    def expanded_embed(url, caption: nil, link: nil, id: nil, type: nil, klass: nil, include_media: true)
       url  = URI.parse(url)
+
+      options    = extract_options(url: url, include_media: include_media)
+      slug       = options[:slug]
+      embed_id   = options[:embed_id]
+      type     ||= options[:type]
+
+      render_erb slug, {
+        embed_id: embed_id || url.to_s,
+        caption:  caption,
+        link:     link,
+        id:       id,
+        type:     type,
+        klass:    klass
+      }
+    end
+
+    # TODO: there’s got to be a better way, refactor to classes
+    def extract_options url:, include_media: true
+      type = nil
 
       case url.host
       when /youtube.com/
@@ -114,20 +139,22 @@ module MarkdownMedia
         embed_id = url.path.split("/").last.split('-').last
 
       else
-        slug = case url.path
-
-        when /\.mp3|\.aac|\.wav|\.ogg|\.oga|\.m4a/
-          "audio"
-        when /\.mp4|\.avi|\.mov|\.ogv|\.webm|\.m4v|\.3gp|\.m3u8/
-          "video"
-        when /\.png|\.jpeg|\.jpg|\.gif|\.svg/
-          "image"
-        else
-          "link"
-        end
+        slug =
+          case url.path
+          when /\.mp3|\.aac|\.wav|\.ogg|\.oga|\.m4a/
+            "audio"
+          when /\.mp4|\.avi|\.mov|\.ogv|\.webm|\.m4v|\.3gp|\.m3u8/
+            "video"
+          when /\.png|\.jpeg|\.jpg|\.gif|\.svg/
+            "image"
+          else
+            "link"
+          end
       end
 
-      render_erb slug, { embed_id: embed_id || url.to_s, caption: caption, link: link, id: id, type: type, klass: klass }
+      slug = 'link' if include_media == false
+
+      { slug: slug, embed_id: embed_id, type: type }
     end
 
     def render_erb(template_slug, locals)

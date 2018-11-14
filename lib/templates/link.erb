@@ -1,1 +1,3 @@
-<a href="<%= embed_id.to_s %>" id="<%= id %>" class="<%= klass %>"><%= caption.to_s.empty? ? embed_id.to_s.sub(/^https*:\/\//, "").sub(/\/$/, "") : caption %></a>
+<a href="<%= embed_id.to_s %>" id="<%= id %>" class="<%= klass %>">
+  <%= caption.to_s.empty? ? embed_id.to_s.sub(/^https*:\/\//, "").sub(/\/$/, "") : caption %>
+</a>
