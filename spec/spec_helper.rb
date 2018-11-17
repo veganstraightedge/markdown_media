@@ -1,5 +1,6 @@
 require "bundler/setup"
 require "markdown_media"
+require "source_code"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
