@@ -12,12 +12,18 @@ module MarkdownMedia
         embed_tag = $1
 
         unless embed_tag.to_s.empty?
+          source_code = SourceCode.new(content: text.dup)
+
           embed_tag_pieces = embed_tag.split(" ")
 
-          url     = embed_tag_pieces.shift
-          id      = remove_id(embed_tag_pieces)
-          klass   = remove_class(embed_tag_pieces)
-          type    = remove_type(embed_tag_pieces)
+          # TEMP: leave these here until SourceCode replaces all embed_tag_pieces
+          embed_tag_pieces.shift
+          remove_id(embed_tag_pieces)
+
+          url   = source_code.url
+          id    = source_code.id
+          klass = remove_class(embed_tag_pieces)
+          type  = remove_type(embed_tag_pieces)
 
           link    = unless embed_tag_pieces.to_s.empty?
             embed_tag_pieces.pop if url_or_path?(embed_tag_pieces.last)
