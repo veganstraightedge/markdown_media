@@ -4,7 +4,7 @@ RSpec.describe SourceCode do
   describe '#initialize' do
     simple_embed           = SourceCode.new(content: '[[ http://example.com/image.png ]]')
     simple_captioned_embed = SourceCode.new(content: '[[ http://example.com/image.png caption ]]')
-    simple_ided_embed = SourceCode.new(content: '[[ http://example.com/image.png id:test ]]')
+    simple_ided_embed      = SourceCode.new(content: '[[ http://example.com/image.png id:test ]]')
 
     it 'requires a content parameter' do
       expect { SourceCode.new }.to raise_error(ArgumentError)
