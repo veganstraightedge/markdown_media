@@ -45,6 +45,5 @@ class SourceCode
 
     @id = id_string.split(':').last
     @pieces.delete(id_string)
-
   end
 end
