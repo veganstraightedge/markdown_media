@@ -19,10 +19,11 @@ module MarkdownMedia
           # TEMP: leave these here until SourceCode replaces all embed_tag_pieces
           embed_tag_pieces.shift
           remove_id(embed_tag_pieces)
+          remove_class(embed_tag_pieces)
 
           url   = source_code.url
           id    = source_code.id
-          klass = remove_class(embed_tag_pieces)
+          klass = source_code.klass
           type  = remove_type(embed_tag_pieces)
 
           link    = unless embed_tag_pieces.to_s.empty?
