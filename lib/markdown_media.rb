@@ -26,21 +26,12 @@ module MarkdownMedia
 
           source_code = SourceCode.new(content: text.dup)
 
-          url     = source_code.url
-          id      = source_code.id
-          klass   = source_code.klass
-          type    = source_code.type
-          link    = source_code.link
-          caption = source_code.caption
-
-
-
-          expanded_embed(url,
-                         caption:       caption,
-                         link:          link,
-                         id:            id,
-                         type:          type,
-                         klass:         klass,
+          expanded_embed(source_code.url,
+                         caption:       source_code.caption,
+                         link:          source_code.link,
+                         id:            source_code.id,
+                         type:          source_code.type,
+                         klass:         source_code.klass,
                          include_media: include_media)
         end
       end
