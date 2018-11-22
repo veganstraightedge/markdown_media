@@ -7,20 +7,20 @@ module MarkdownMedia
   EMBED_REGEX = /\[\[\s*(http[^\]\s]+(?:\s.+)?)\s*\]\]/
 
   class << self
-    def parse(text, include_media: true)
+    def parse text, include_media: true
       output = text.gsub(EMBED_REGEX) do
         embed_tag = $1
 
         unless embed_tag.to_s.empty?
-          source_code = SourceCode.new(content: text.dup)
-
-          embed_tag_pieces = embed_tag.split(" ")
-
           # TEMP: leave these here until SourceCode replaces all embed_tag_pieces
+          embed_tag_pieces = embed_tag.split(" ")
           embed_tag_pieces.shift
           remove_id(embed_tag_pieces)
           remove_class(embed_tag_pieces)
           remove_type(embed_tag_pieces)
+
+
+          source_code = SourceCode.new(content: text.dup)
 
           url   = source_code.url
           id    = source_code.id
