@@ -12,18 +12,6 @@ module MarkdownMedia
         embed_tag = $1
 
         unless embed_tag.to_s.empty?
-          # TEMP: leave these here until SourceCode replaces all embed_tag_pieces
-          embed_tag_pieces = embed_tag.split(" ")
-          embed_tag_pieces.shift
-          remove_id(embed_tag_pieces)
-          remove_class(embed_tag_pieces)
-          remove_type(embed_tag_pieces)
-          unless embed_tag_pieces.to_s.empty?
-            embed_tag_pieces.pop if url_or_path?(embed_tag_pieces.last)
-          end
-          embed_tag_pieces.join(" ")
-
-
           source_code = SourceCode.new(content: text.dup)
 
           expanded_embed(source_code.url,
