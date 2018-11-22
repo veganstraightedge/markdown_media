@@ -6,8 +6,8 @@ RSpec.describe SourceCode do
     simple_embed_with_caption = SourceCode.new(content: '[[ http://example.com/image.png caption ]]')
     simple_embed_with_id      = SourceCode.new(content: '[[ http://example.com/image.png id:test ]]')
     simple_embed_with_class   = SourceCode.new(content: '[[ http://example.com/image.png class:test ]]')
-    simple_embed_with_url     = SourceCode.new(content: '[[ http://example.com/image.png http://example.org ]]')
     simple_embed_with_type    = SourceCode.new(content: '[[ http://example.com/image.png type:video ]]')
+    simple_embed_with_link    = SourceCode.new(content: '[[ http://example.com/image.png http://example.org ]]')
 
     context '#content' do
       it 'requires a content parameter' do
@@ -64,6 +64,12 @@ RSpec.describe SourceCode do
     context 'with type' do
       it 'sets @type as readable' do
         expect(simple_embed_with_type.type).to be_truthy
+      end
+    end
+
+    context 'with link' do
+      it 'sets @link as readable' do
+        expect(simple_embed_with_link.link).to be_truthy
       end
     end
   end

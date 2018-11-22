@@ -1,5 +1,5 @@
 class SourceCode
-  attr_reader :content, :url, :pieces, :id, :klass, :type
+  attr_reader :content, :url, :pieces, :id, :klass, :type, :link
 
   # URL, then a space, then optional caption/id/class/link
   EMBED_REGEX = /(http[^\]\s]+(?:\s.+)?)/.freeze
@@ -13,6 +13,7 @@ class SourceCode
     extract_id!
     extract_klass!
     extract_type!
+    extract_link!
   end
 
   private
@@ -71,4 +72,15 @@ class SourceCode
     @pieces.delete(type_string)
   end
 
+  def extract_link!
+    return if @pieces.to_s.empty?
+
+    return unless url_or_path? @pieces.last
+
+    @link = @pieces.pop
+  end
+
+  def url_or_path? text
+    text =~ /^(http|\/)\S+/ ? true : false
+  end
 end

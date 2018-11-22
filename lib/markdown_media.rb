@@ -18,7 +18,9 @@ module MarkdownMedia
           remove_id(embed_tag_pieces)
           remove_class(embed_tag_pieces)
           remove_type(embed_tag_pieces)
-
+          unless embed_tag_pieces.to_s.empty?
+            embed_tag_pieces.pop if url_or_path?(embed_tag_pieces.last)
+          end
 
           source_code = SourceCode.new(content: text.dup)
 
@@ -26,10 +28,8 @@ module MarkdownMedia
           id    = source_code.id
           klass = source_code.klass
           type  = source_code.type
+          link  = source_code.link
 
-          link    = unless embed_tag_pieces.to_s.empty?
-            embed_tag_pieces.pop if url_or_path?(embed_tag_pieces.last)
-          end
 
           caption = embed_tag_pieces.join(" ")
 
