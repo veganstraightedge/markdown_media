@@ -21,17 +21,19 @@ module MarkdownMedia
           unless embed_tag_pieces.to_s.empty?
             embed_tag_pieces.pop if url_or_path?(embed_tag_pieces.last)
           end
+          embed_tag_pieces.join(" ")
+
 
           source_code = SourceCode.new(content: text.dup)
 
-          url   = source_code.url
-          id    = source_code.id
-          klass = source_code.klass
-          type  = source_code.type
-          link  = source_code.link
+          url     = source_code.url
+          id      = source_code.id
+          klass   = source_code.klass
+          type    = source_code.type
+          link    = source_code.link
+          caption = source_code.caption
 
 
-          caption = embed_tag_pieces.join(" ")
 
           expanded_embed(url,
                          caption:       caption,

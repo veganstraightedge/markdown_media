@@ -72,5 +72,11 @@ RSpec.describe SourceCode do
         expect(simple_embed_with_link.link).to be_truthy
       end
     end
+
+    context 'with caption' do
+      it 'sets @caption as readable' do
+        expect(simple_embed_with_caption.caption).to be_truthy
+      end
+    end
   end
 end
