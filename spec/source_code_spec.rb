@@ -3,7 +3,7 @@ require 'spec_helper'
 RSpec.describe SourceCode do
   describe '#initialize' do
     simple_embed              = SourceCode.new(content: '[[ http://example.com/image.png ]]')
-    simple_embed_with_caption = SourceCode.new(content: '[[ http://example.com/image.png caption ]]')
+    simple_embed_with_caption = SourceCode.new(content: '[[ http://example.com/image.png lorem ipsum caption ]]')
     simple_embed_with_id      = SourceCode.new(content: '[[ http://example.com/image.png id:test ]]')
     simple_embed_with_class   = SourceCode.new(content: '[[ http://example.com/image.png class:test ]]')
     simple_embed_with_type    = SourceCode.new(content: '[[ http://example.com/image.png type:video ]]')
@@ -45,7 +45,7 @@ RSpec.describe SourceCode do
       end
 
       xit 'must start with a URL' do
-        expect(SourceCode.new(content: '[[ caption ]]')).to raise_error(TypeError)
+        expect(SourceCode.new(content: '[[ lorem ipsum caption ]]')).to raise_error(TypeError)
       end
     end
 
