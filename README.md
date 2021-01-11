@@ -152,6 +152,12 @@ YouTube’s short URL format also works.
 [[https://youtu.be/YX40hbAHx3s]]
 ```
 
+YouTube’s embed URL format also works.
+
+```
+[[https://www.youtube.com/embed/YX40hbAHx3s]]
+```
+
 A video from Daily Motion.
 
 ```
