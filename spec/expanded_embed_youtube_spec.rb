@@ -9,6 +9,13 @@ RSpec.describe MarkdownMedia do
       expect(strip_html_whitespace(result)).to eq(expected_result)
     end
 
+    it "finds an youtube embed with an embed YouTube video URL" do
+      result = MarkdownMedia.expanded_embed("https://www.youtube.com/embed/YX40hbAHx3s")
+
+      expected_result = %q{<figure class="video-container " id=""><iframe src="https://www.youtube.com/embed/YX40hbAHx3s" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></figure>}
+      expect(strip_html_whitespace(result)).to eq(expected_result)
+    end
+
     it "finds an youtube embed with a caption" do
       result = MarkdownMedia.expanded_embed(
         "https://www.youtube.com/watch?v=YX40hbAHx3s",

@@ -103,53 +103,59 @@ module MarkdownMedia
     def extract_options url:, include_media: true
       type = nil
 
-      case url.host
-      when /youtube.com/
+      if url.to_s =~ %r{youtube.com/embed}
         slug     = "youtube"
-        embed_id = nil
-
-        url.query.split("&").each do |key_value_pair|
-          argument, value = key_value_pair.split("=")
-          if argument == "v"
-            embed_id = value
-          end
-        end
-
-      when "youtu.be"
-        slug     = "youtube"
-        embed_id = url.path.split("/").map{ |path_piece| path_piece unless path_piece.to_s.empty? }.compact.first
-
-      when /dailymotion.com/
-        slug     = "dailymotion"
-        embed_id = url.path.split("/video/").map{ |path_piece| path_piece unless path_piece.to_s.empty? }.compact.first.split("_").first
-
-      when "vimeo.com"
-        slug     = "vimeo"
-        embed_id = url.path.split("/").map{ |path_piece| path_piece unless path_piece.to_s.empty? }.compact.first
-
-      when "twitter.com"
-        slug     = "twitter"
-        type   ||= "tweet"
-
-      when /instagram/
-        slug     = "instagram"
-
-      when "giphy.com"
-        slug     = "giphy"
-        embed_id = url.path.split("/").last.split('-').last
-
+        embed_id = url.path.split("/embed/")[1]
       else
-        slug =
-          case url.path
-          when /\.mp3|\.aac|\.wav|\.ogg|\.oga|\.m4a/
-            "audio"
-          when /\.mp4|\.avi|\.mov|\.ogv|\.webm|\.m4v|\.3gp|\.m3u8/
-            "video"
-          when /\.png|\.jpeg|\.jpg|\.gif|\.svg/
-            "image"
-          else
-            "link"
+
+        case url.host
+        when /youtube.com/
+          slug     = "youtube"
+          embed_id = nil
+
+          url.query.split("&").each do |key_value_pair|
+            argument, value = key_value_pair.split("=")
+            if argument == "v"
+              embed_id = value
+            end
           end
+
+        when "youtu.be"
+          slug     = "youtube"
+          embed_id = url.path.split("/").map{ |path_piece| path_piece unless path_piece.to_s.empty? }.compact.first
+
+        when /dailymotion.com/
+          slug     = "dailymotion"
+          embed_id = url.path.split("/video/").map{ |path_piece| path_piece unless path_piece.to_s.empty? }.compact.first.split("_").first
+
+        when "vimeo.com"
+          slug     = "vimeo"
+          embed_id = url.path.split("/").map{ |path_piece| path_piece unless path_piece.to_s.empty? }.compact.first
+
+        when "twitter.com"
+          slug     = "twitter"
+          type   ||= "tweet"
+
+        when /instagram/
+          slug     = "instagram"
+
+        when "giphy.com"
+          slug     = "giphy"
+          embed_id = url.path.split("/").last.split('-').last
+
+        else
+          slug =
+            case url.path
+            when /\.mp3|\.aac|\.wav|\.ogg|\.oga|\.m4a/
+              "audio"
+            when /\.mp4|\.avi|\.mov|\.ogv|\.webm|\.m4v|\.3gp|\.m3u8/
+              "video"
+            when /\.png|\.jpeg|\.jpg|\.gif|\.svg/
+              "image"
+            else
+              "link"
+            end
+        end
       end
 
       slug = 'link' if include_media == false
