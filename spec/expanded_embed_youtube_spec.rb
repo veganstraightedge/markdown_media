@@ -2,7 +2,7 @@ require "spec_helper"
 
 RSpec.describe MarkdownMedia do
   describe "#expanded_embed for youtube" do
-    it "finds an youtube embed" do
+    it "finds an youtube embed with a standard YouTube video URL" do
       result = MarkdownMedia.expanded_embed("https://www.youtube.com/watch?v=YX40hbAHx3s")
 
       expected_result = %q{<figure class="video-container " id=""><iframe src="https://www.youtube.com/embed/YX40hbAHx3s" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe></figure>}
