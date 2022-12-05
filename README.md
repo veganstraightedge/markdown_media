@@ -266,6 +266,13 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/veganstraightedge/markdown_media. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
+### Contributors
+
+* Shane Becker <veganstraightedge@gmail.com>
+* Morgan Fogarty <mofo37@gmail.com>
+* Matt Pruitt <guitsaru@gmail.com>
+* Justin Lavoie <just1602@riseup.net>
+* astronaut-wannabe <contact@astronaut-wannabe.com> 
 
 ## License
 
