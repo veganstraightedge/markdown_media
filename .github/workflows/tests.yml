@@ -1,0 +1,20 @@
+on: [push]
+
+name: specs
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@master
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@master
+        with:
+          ruby-version: 3.3
+          bundler-cache: true
+
+      - name: Run rspec
+        run: bundle exec rspec
