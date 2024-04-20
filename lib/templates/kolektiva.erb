@@ -1,0 +1,9 @@
+<figure class="video-container <%= klass %>" id="<%= id %>">
+  <iframe src="https://kolektiva.media/videos/embed/<%= embed_id %>" frameborder="0" allowfullscreen sandbox="allow-same-origin allow-scripts allow-popups"></iframe>
+
+  <% unless caption.to_s.empty? %>
+    <figcaption class="caption video-caption video-caption-kolektiva">
+      <%= MarkdownMedia.render_markdown caption %>
+    </figcaption>
+  <% end %>
+</figure>

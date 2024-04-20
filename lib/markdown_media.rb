@@ -143,6 +143,10 @@ module MarkdownMedia
           slug     = "giphy"
           embed_id = url.path.split("/").last.split('-').last
 
+        when "kolektiva.media"
+          slug     = "kolektiva"
+          embed_id = url.path.split("/").last
+
         else
           slug =
             case url.path
