@@ -1,6 +1,5 @@
 # Markdown Media
 
-[![Build Status](https://travis-ci.org/veganstraightedge/markdown_media.svg?branch=master)](https://travis-ci.org/veganstraightedge/markdown_media)
 [![Code Climate](https://codeclimate.com/github/veganstraightedge/markdown_media/badges/gpa.svg)](https://codeclimate.com/github/veganstraightedge/markdown_media)
 ![Version 1.6.0](https://img.shields.io/badge/VERSION-1.6.0-green.svg)
 
