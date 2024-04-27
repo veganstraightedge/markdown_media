@@ -1,7 +1,7 @@
 # Markdown Media
 
 [![Code Climate](https://codeclimate.com/github/veganstraightedge/markdown_media/badges/gpa.svg)](https://codeclimate.com/github/veganstraightedge/markdown_media)
-![Version 1.8.0](https://img.shields.io/badge/VERSION-1.8.0-green.svg)
+![Version 2.0.0](https://img.shields.io/badge/VERSION-2.0.0-green.svg)
 
 This syntax uses doubles square brackets on each side of a URL and optional options.
 It expands into the current preferred embed code for that site’s media or raw media.
