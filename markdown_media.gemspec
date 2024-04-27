@@ -18,7 +18,7 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/veganstraightedge/markdown_media"
   spec.license       = "CC0"
 
-  spec.required_ruby_version = ">= 2.2"
+  spec.required_ruby_version = ">= 3.3"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
     f.match(%r{^(test|spec|features)/})
